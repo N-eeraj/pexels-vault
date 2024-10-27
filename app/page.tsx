@@ -1,12 +1,7 @@
-import { fetchCuratedImages } from "@/lib/fetchImages"
-
-
-export default async function Home() {
-  const data = await fetchCuratedImages()
-
+export default function Home() {
+  console.log(process.env.PEXELS_API_KEY)
   return (
     <main>
-      {JSON.stringify(data)}
       <h1 className="text-4xl text-accent">
         Title
       </h1>
