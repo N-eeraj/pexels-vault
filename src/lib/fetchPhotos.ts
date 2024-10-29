@@ -1,14 +1,14 @@
 import {
   PhotoResource,
   PhotoResourceSchema,
-} from "@schemas/images"
+} from "@schemas/photos"
 import {
   ListParams,
   ListParamsSchema,
 } from "@schemas/common"
 import { PEXELS_API_KEY } from "@constants/pexels"
 
-export async function fetchCuratedImages(params?: ListParams | undefined): Promise<PhotoResource | undefined> {
+export async function fetchCuratedPhotos(params?: ListParams | undefined): Promise<PhotoResource | undefined> {
   try {
     // validates params and convert its values to string
     const parsedParams = Object.fromEntries(
@@ -21,7 +21,7 @@ export async function fetchCuratedImages(params?: ListParams | undefined): Promi
         Authorization: PEXELS_API_KEY,
       }
     })
-    if (!response.ok) throw new Error("Failed to fetch images")
+    if (!response.ok) throw new Error("Failed to fetch photos")
     const data: PhotoResource = await response.json()
     const parsedData = PhotoResourceSchema.parse(data)
     if (parsedData.total_results === 0) {

@@ -1,12 +1,9 @@
-import { fetchCuratedImages } from "@/lib/fetchImages"
+import { Suspense } from "react"
+import CuratedPhotos from "@components/photo/Gallery/Curated"
 
-
-export default async function Home() {
-  const data = await fetchCuratedImages()
-
+export default function Home() {
   return (
     <main>
-      {JSON.stringify(data)}
       <h1 className="text-4xl text-accent">
         Title
       </h1>
@@ -19,6 +16,10 @@ export default async function Home() {
       <button className="p-4 bg-secondary-variant text-accent">
         Button
       </button>
+
+      <Suspense fallback="loading...">
+        <CuratedPhotos />
+      </Suspense>
     </main>
   )
 }
