@@ -1,9 +1,10 @@
 import Image from "next/image"
-import type { Photo } from "@schemas/photos"
+import type { PhotoResource } from "@schemas/photos"
 import Masonry from "@components/Masonry"
+import Link from "next/link"
 
-export default function Gallery({ photos }: Readonly<{photos: Photo[] | undefined}>) {
-  if (!photos) {
+export default function Gallery({ data }: Readonly<{data: PhotoResource | undefined}>) {
+  if (!data || !data.photos) {
     return (
       <strong>
         No Photos
@@ -12,16 +13,32 @@ export default function Gallery({ photos }: Readonly<{photos: Photo[] | undefine
   }
 
   return (
-    <Masonry
-      items={photos}
-      renderEl={({ src, height, width, alt }) => (
-        <Image
-          src={src.large}
-          width={256}
-          height={256 * (height / width)}
-          alt={alt}
-          style={{ width: "100%" }}
-          className="hover:opacity-90 scale-125 hover:scale-100 duration-300 cursor-pointer" />
-      )} />
+    <>
+      <Masonry
+        items={data.photos}
+        renderEl={({ src, height, width, alt }) => (
+          <Image
+            src={src.large}
+            width={256}
+            height={256 * (height / width)}
+            alt={alt}
+            style={{ width: "100%" }}
+            className="hover:opacity-90 scale-125 hover:scale-100 duration-300 cursor-pointer" />
+        )} />
+        {Array.from({ length: 10 }).map((_, i) => (
+          <Link
+            key={i}
+            href={{
+              pathname: `/`,
+              query: {
+                page: i + 1
+              }
+            }}>
+            <button className={`min-w-10 aspect-square mx-1 mb-1 p-2 ${data.page === i + 1 ? "bg-accent" : "bg-secondary-variant"} text-primary rounded`}>
+              {i + 1}
+            </button>
+          </Link>
+        ))}
+    </>
   )
 }

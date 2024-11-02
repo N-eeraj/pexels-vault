@@ -1,24 +1,17 @@
 import { Suspense } from "react"
 import CuratedPhotos from "@components/photo/Gallery/Curated"
 
-export default function Home() {
+export default function Home({ searchParams }: {
+  searchParams?: { [key: string]: string | string[] | undefined };
+}) {
+  const page = Number(searchParams?.page) || 1
+
   return (
     <main>
-      <h1 className="text-4xl text-accent">
-        Title
-      </h1>
-      <h2 className="text-2xl">
-        Sub Title
-      </h2>
-      <button className="p-4 bg-secondary-variant text-primary">
-        Button
-      </button>
-      <button className="p-4 bg-secondary-variant text-accent">
-        Button
-      </button>
-
-      <Suspense fallback="loading...">
-        <CuratedPhotos />
+      <Suspense
+        key={page}
+        fallback="loading...">
+        <CuratedPhotos page={page} />
       </Suspense>
     </main>
   )
