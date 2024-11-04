@@ -23,7 +23,7 @@ export const PhotoSchema = z.object({
     tiny: z.string(),
   }),
   alt: z.string(),
-  blurredDataUrl: z.string().optional()
+  blurredDataUrl: z.string().optional(),
 })
 
 export const PhotoResourceSchema = z.object({
