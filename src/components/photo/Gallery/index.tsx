@@ -30,6 +30,7 @@ export default async function Gallery({ data }: Readonly<{data: PhotoResource | 
             style={{ width: "100%" }}
             className="hover:opacity-90 scale-125 hover:scale-100 duration-300 cursor-pointer" />
         )} />
+
         {Array.from({ length: 10 }).map((_, i) => (
           <Link
             key={i}

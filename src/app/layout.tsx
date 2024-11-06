@@ -1,4 +1,5 @@
 import type { Metadata } from "next"
+import NavBar from "@components/Layout/NavBar"
 import "@/app/global.css"
 
 export const metadata: Metadata = {
@@ -13,8 +14,19 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        <link
+          rel="icon"
+          href="/pexels-vault.png"
+          sizes="any" />
+      </head>
+
       <body className="bg-primary text-secondary">
-        {children}
+        <NavBar />
+
+        <main>
+          {children}
+        </main>
       </body>
     </html>
   )
