@@ -4,7 +4,7 @@ import SearchSelect from "@components/Layout/NavBar/SearchSelect"
 
 export default function NavBar() {
   return (
-    <nav className="flex justify-between items-center gap-x-4 p-4 bg-secondary-variant">
+    <nav className="sticky top-0 flex justify-between items-center gap-x-4 p-4 bg-secondary-variant z-10">
       <Link href="/">
         <h1 className="flex items-center gap-x-2 text-2xl text-primary">
           <Image
