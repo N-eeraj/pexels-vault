@@ -1,9 +1,14 @@
-export default function Masonry<T extends { id: number }>({ items, renderEl: RenderEl }: Readonly<{
+export default function Masonry<T extends { id: number }>({
+  items,
+  renderEl: RenderEl,
+  className
+}: Readonly<{
   items: T[]
   renderEl: React.ComponentType<T>
+  className?: string
 }>) {
   return (
-    <ul className="columns-3xs p-4">
+    <ul className={`columns-3xs p-4 ${className}`}>
       {items.map(item => (
         <li
           key={item.id}

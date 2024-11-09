@@ -13,7 +13,7 @@ export default async function Gallery({ data }: Readonly<{data: PhotoResource | 
     )
   }
 
-  const photos = await getBlurredPhotos(data?.photos)
+  await getBlurredPhotos(data?.photos)
 
   return (
     <>
@@ -29,7 +29,8 @@ export default async function Gallery({ data }: Readonly<{data: PhotoResource | 
             blurDataURL={blurredDataUrl}
             style={{ width: "100%" }}
             className="hover:opacity-90 scale-125 hover:scale-100 duration-300 cursor-pointer" />
-        )} />
+        )}
+        className="max-w-7xl mx-auto" />
 
         {Array.from({ length: 10 }).map((_, i) => (
           <Link

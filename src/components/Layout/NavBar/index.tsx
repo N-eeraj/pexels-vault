@@ -4,7 +4,7 @@ import SearchSelect from "@components/Layout/NavBar/SearchSelect"
 
 export default function NavBar() {
   return (
-    <nav className="sticky top-0 flex justify-between items-center gap-x-4 p-4 bg-secondary-variant z-10">
+    <nav className="sticky top-0 flex justify-between items-center flex-wrap gap-4 p-4 lg:px-8 bg-secondary-variant z-10">
       <Link href="/">
         <h1 className="flex items-center gap-x-2 text-2xl text-primary">
           <Image
@@ -12,7 +12,7 @@ export default function NavBar() {
             alt="Pexels Vault"
             width={40}
             height={40} />
-          <span className="hidden lg:block">
+          <span>
             Pexels Vault
           </span>
         </h1>
