@@ -5,7 +5,7 @@ import { getBlurredPhotos } from "@lib/getBlurredImage"
 import Pagination from "@components/Pagination"
 
 export default async function Gallery({ data }: Readonly<{data: PhotoResource | undefined}>) {
-  if (!data || !data.photos) {
+  if (!data || !data.photos?.length) {
     return (
       <strong>
         No Photos

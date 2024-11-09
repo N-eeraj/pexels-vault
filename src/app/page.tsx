@@ -3,7 +3,9 @@ import MediaTypeTab from "@components/MediaTypeTab"
 import CuratedPhotos from "@components/photo/Gallery/Curated"
 
 export default function Home({ searchParams }: {
-  searchParams?: { [key: string]: string | string[] | undefined };
+  searchParams?: {
+    page?: string
+  }
 }) {
   const page = Number(searchParams?.page) || 1
 
