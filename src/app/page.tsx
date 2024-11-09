@@ -1,4 +1,5 @@
 import { Suspense } from "react"
+import MediaTypeTab from "@components/MediaTypeTab"
 import CuratedPhotos from "@components/photo/Gallery/Curated"
 
 export default function Home({ searchParams }: {
@@ -8,6 +9,8 @@ export default function Home({ searchParams }: {
 
   return (
     <main>
+      <MediaTypeTab />
+
       <Suspense
         key={page}
         fallback="loading...">
