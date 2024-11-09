@@ -1,3 +1,5 @@
+import toTitleCase from "~/src/utils/toTitleCase"
+
 interface PageParams {
   params: {
     query: string
@@ -7,9 +9,17 @@ interface PageParams {
   }
 }
 
+export async function generateMetadata({ params, searchParams }: PageParams) {
+  const query = toTitleCase(decodeURI(params.query))
+  const type = toTitleCase(searchParams.type ?? "photo")
+  return {
+    title: `${type} results for ${query}`,
+  }
+}
+
 export default function page({ params, searchParams }: PageParams) {
-  const { query } = params
-  const { type } = searchParams ?? "photo"
+  const query = toTitleCase(decodeURI(params.query))
+  const type = searchParams.type ?? "photo"
 
   return (
     <div>

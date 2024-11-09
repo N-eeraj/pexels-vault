@@ -9,7 +9,9 @@ export default function Home({ searchParams }: {
 
   return (
     <main>
-      <MediaTypeTab />
+      <Suspense>
+        <MediaTypeTab />
+      </Suspense>
 
       <Suspense
         key={page}

@@ -4,7 +4,10 @@ import Footer from "@components/Layout/Footer"
 import "@/app/global.css"
 
 export const metadata: Metadata = {
-  title: "Pexels Vault",
+  title: {
+    default: "Pexels Vault",
+    template: "%s | Pexels Vault",
+  },
   description: "An photo and video search app powered by Pexels, built using Next.js",
 }
 
