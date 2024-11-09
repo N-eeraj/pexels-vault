@@ -1,10 +1,6 @@
 "use client"
 
-import {
-  useSearchParams,
-  useRouter,
-  usePathname,
-} from "next/navigation"
+import { useSearchParams } from "next/navigation"
 
 import {
   Tab,
@@ -12,25 +8,19 @@ import {
   TabList,
 } from "@headlessui/react"
 
+import useUpdateSearchParams from "@hooks/useUpdateSearchParams"
+
 import { MEDIA_TYPES } from "@constants/pexels"
 
 export default function MediaTypeTab() {
   const searchParams = useSearchParams()
-  const pathName = usePathname()
-  const router = useRouter()
+  const { updateSearchParams } = useUpdateSearchParams()
+
   const defaultIndex = MEDIA_TYPES.findIndex(({ type }) => (searchParams.get("type") ?? MEDIA_TYPES[0].type) === type)
 
   const handleTypeChange = (value: number) => {
     const { type } = MEDIA_TYPES[value]
-    const params = new URLSearchParams(searchParams.toString())
-    searchParams.entries()
-      .forEach(([key, value]: [string, string]) => 
-        params.set(key, key === "type" ? type : value)
-      )
-    if (!params.has("type")) {
-      params.set("type", type)
-    }
-    router.push(`${pathName}?${params.toString()}`)
+    updateSearchParams("type", type)
   }
 
   return (

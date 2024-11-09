@@ -1,8 +1,8 @@
-import Link from "next/link"
 import Image from "next/image"
 import Masonry from "@components/Masonry"
 import type { PhotoResource } from "@schemas/photos"
 import { getBlurredPhotos } from "@lib/getBlurredImage"
+import Pagination from "@components/Pagination"
 
 export default async function Gallery({ data }: Readonly<{data: PhotoResource | undefined}>) {
   if (!data || !data.photos) {
@@ -32,20 +32,9 @@ export default async function Gallery({ data }: Readonly<{data: PhotoResource | 
         )}
         className="max-w-7xl mx-auto" />
 
-        {Array.from({ length: 10 }).map((_, i) => (
-          <Link
-            key={i}
-            href={{
-              pathname: `/`,
-              query: {
-                page: i + 1
-              }
-            }}>
-            <button className={`min-w-10 aspect-square mx-1 mb-1 p-2 ${data.page === i + 1 ? "bg-accent" : "bg-secondary-variant"} text-primary rounded`}>
-              {i + 1}
-            </button>
-          </Link>
-        ))}
+        <Pagination
+          length={10}
+          currentPage={data.page} />
     </>
   )
 }
