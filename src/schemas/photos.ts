@@ -29,8 +29,9 @@ export const PhotoSchema = z.object({
 export const PhotoResourceSchema = z.object({
   photos: z.array(PhotoSchema),
   page: z.number(),
+  per_page: z.number(),
   total_results: z.number(),
-  per_page: z.number().optional(),
+  prev_page: z.string().optional(),
   next_page: z.string().optional(),
 })
 

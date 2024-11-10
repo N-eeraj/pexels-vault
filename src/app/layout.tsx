@@ -30,7 +30,7 @@ export default function RootLayout({
       <body className="flex flex-col justify-between min-h-screen bg-primary text-secondary">
         <NavBar />
 
-        <main className="flex-1">
+        <main className="flex-1 pb-4">
           {children}
         </main>
 

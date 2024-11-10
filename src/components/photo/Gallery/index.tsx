@@ -13,6 +13,8 @@ export default async function Gallery({ data }: Readonly<{data: PhotoResource | 
     )
   }
 
+  const pageLength = Math.floor(data.total_results / data.per_page)
+
   await getBlurredPhotos(data?.photos)
 
   return (
@@ -33,7 +35,7 @@ export default async function Gallery({ data }: Readonly<{data: PhotoResource | 
         className="max-w-7xl mx-auto" />
 
         <Pagination
-          length={10}
+          length={pageLength}
           currentPage={data.page} />
     </>
   )
