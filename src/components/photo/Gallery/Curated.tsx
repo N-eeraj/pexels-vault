@@ -14,4 +14,3 @@ export default async function CuratedPhotos({ page }: Readonly<{
     </section>
   )
 }
-

@@ -32,13 +32,22 @@ export default function page({ params, searchParams }: PageParams) {
         <MediaTypeTab />
       </Suspense>
 
-      <Suspense
-        key={`${query}-${page}`}
-        fallback="loading...">
-        <SearchResultPhotos
-          query={query}
-          page={page} />
-      </Suspense>
+      { type === "video" ?
+          (<Suspense
+            key={`${query}-${page}`}
+            fallback="loading...">
+            <SearchResultPhotos
+              query={query}
+              page={page} />
+          </Suspense>):
+          (<Suspense
+            key={`${query}-${page}`}
+            fallback="loading...">
+            <SearchResultPhotos
+              query={query}
+              page={page} />
+          </Suspense>)
+      }
     </main>
   )
 }
