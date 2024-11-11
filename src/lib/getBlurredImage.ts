@@ -14,7 +14,7 @@ export default async function getBase64(imageUrl: string) {
 }
 
 export async function getBlurredPhotos(photoUrls: Photo[]): Promise<Photo[]> {
-  const base64Promises = photoUrls.map(url => getBase64(url.src.medium))
+  const base64Promises = photoUrls.map(url => getBase64(url.src.tiny))
   const base64Photos = await Promise.all(base64Promises)
   return photoUrls.map((photo, index) => {
     photo.blurredDataUrl = base64Photos[index]

@@ -24,11 +24,13 @@ export default function Pagination({ length, currentPage }: Readonly<{
       previousLabel="&lsaquo;"
       nextLabel="&rsaquo;"
       containerClassName="flex justify-center items-center gap-x-2 w-full"
-      pageClassName="min-w-10 text-primary text-center bg-secondary-variant rounded"
-      pageLinkClassName="grid place-content-center w-full h-full p-2"
+      pageClassName="min-w-10 page-btn"
+      pageLinkClassName="pagination-link p-2"
       activeClassName="!bg-accent"
-      previousClassName={`${currentPage === 1 && "hidden"} grid place-content-center px-4 py-1.5 bg-secondary text-primary text-xl font-medium rounded`}
-      nextClassName={`${currentPage === length && "hidden"} grid place-content-center px-4 py-1.5 bg-secondary text-primary text-xl font-medium rounded`}
+      previousClassName={`${currentPage === 1 && "hidden"} page-step-btn`}
+      nextClassName={`${currentPage === length && "hidden"} page-step-btn`}
+      previousLinkClassName="pagination-link text-2xl"
+      nextLinkClassName="pagination-link text-2xl"
       onClick={handlePaginate} />
   )
 }
