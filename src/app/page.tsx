@@ -13,7 +13,7 @@ export default function Home({ searchParams }: {
   const page = Number(searchParams?.page) || 1
 
   return (
-    <main>
+    <>
       <Suspense>
         <MediaTypeTab />
       </Suspense>
@@ -30,6 +30,6 @@ export default function Home({ searchParams }: {
             <CuratedPhotos page={page} />
           </Suspense>)
       }
-    </main>
+    </>
   )
 }

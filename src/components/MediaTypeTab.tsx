@@ -1,7 +1,5 @@
 "use client"
 
-import { useSearchParams } from "next/navigation"
-
 import {
   Tab,
   TabGroup,
@@ -9,14 +7,13 @@ import {
 } from "@headlessui/react"
 
 import useUpdateSearchParams from "@hooks/useUpdateSearchParams"
+import useMediaType from "@hooks/useMediaType"
 
 import { MEDIA_TYPES } from "@constants/pexels"
 
 export default function MediaTypeTab() {
-  const searchParams = useSearchParams()
   const { replaceSearchParams } = useUpdateSearchParams()
-
-  const defaultIndex = MEDIA_TYPES.findIndex(({ type }) => (searchParams.get("type") ?? MEDIA_TYPES[0].type) === type)
+  const { index: defaultIndex } = useMediaType()
 
   const handleTypeChange = (value: number) => {
     const { type } = MEDIA_TYPES[value]

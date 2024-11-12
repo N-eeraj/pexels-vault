@@ -21,6 +21,8 @@ import {
 
 import { Icon } from "@iconify/react"
 
+import useMediaType from "@hooks/useMediaType"
+
 import { MEDIA_TYPES } from "@constants/pexels"
 
 type MediaType = typeof MEDIA_TYPES[number]["type"]
@@ -28,9 +30,12 @@ type MediaType = typeof MEDIA_TYPES[number]["type"]
 export default function SearchSelect() {
   const searchParams = useSearchParams()
   const router = useRouter()
+  const {
+    type: mediaType,
+    icon: currentIcon,
+  } = useMediaType()
 
-  const [selectedType, setSelectedType] = useState<MediaType>((searchParams.get("type") as MediaType) ?? MEDIA_TYPES[0].type)
-  const currentIcon = MEDIA_TYPES.find(({ type }) => type === selectedType)?.icon ?? MEDIA_TYPES[0].icon
+  const [selectedType, setSelectedType] = useState<MediaType>(mediaType)
   const searchInput = useRef<HTMLInputElement | null>(null)
 
   const handleSearch = (event: FormEvent) => {
@@ -54,6 +59,10 @@ export default function SearchSelect() {
       document.removeEventListener("keyup", searchFocus)
     }
   }, [])
+
+  useEffect(() => {
+    setSelectedType(mediaType)
+  }, [searchParams])
 
   return (
     <form
