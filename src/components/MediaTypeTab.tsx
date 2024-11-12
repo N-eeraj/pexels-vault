@@ -14,13 +14,13 @@ import { MEDIA_TYPES } from "@constants/pexels"
 
 export default function MediaTypeTab() {
   const searchParams = useSearchParams()
-  const { updateSearchParams } = useUpdateSearchParams()
+  const { replaceSearchParams } = useUpdateSearchParams()
 
   const defaultIndex = MEDIA_TYPES.findIndex(({ type }) => (searchParams.get("type") ?? MEDIA_TYPES[0].type) === type)
 
   const handleTypeChange = (value: number) => {
     const { type } = MEDIA_TYPES[value]
-    updateSearchParams("type", type)
+    replaceSearchParams("type", type)
   }
 
   return (

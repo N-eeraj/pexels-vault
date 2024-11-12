@@ -1,9 +1,4 @@
 import { z } from "zod"
-import {
-  ORIENTATION,
-  SIZE,
-} from "@constants/pexels"
-import { ListParamsSchema } from "@schemas/common"
 
 export const PhotoSchema = z.object({ 
   id: z.number(),
@@ -35,12 +30,5 @@ export const PhotoResourceSchema = z.object({
   next_page: z.string().optional(),
 })
 
-export const QueryParamsSchema = ListParamsSchema.extend({
-  query: z.string(),
-  orientation: z.enum(ORIENTATION).optional(),
-  size: z.enum(SIZE).optional(),
-})
-
 export type Photo = z.infer<typeof PhotoSchema>
 export type PhotoResource = z.infer<typeof PhotoResourceSchema>
-export type QueryParams = z.infer<typeof QueryParamsSchema>

@@ -21,7 +21,12 @@ export default function useUpdateSearchParams() {
     router.push(`${pathName}?${params.toString()}`)
   }
 
+  const replaceSearchParams = (key: string, value: string) => {
+    router.push(`${pathName}?${key}=${value}`)
+  }
+
   return {
-    updateSearchParams
+    updateSearchParams,
+    replaceSearchParams,
   }
 }

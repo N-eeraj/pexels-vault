@@ -16,6 +16,13 @@ export const ListParamsSchema = z.object({
     .optional(),
 })
 
+export const QueryParamsSchema = ListParamsSchema.extend({
+  query: z.string(),
+  orientation: z.enum(ORIENTATION).optional(),
+  size: z.enum(SIZE).optional(),
+})
+
 export type Orientation = typeof ORIENTATION[number]
 export type Size = typeof SIZE[number]
 export type ListParams = z.infer<typeof ListParamsSchema>
+export type QueryParams = z.infer<typeof QueryParamsSchema>

@@ -1,4 +1,5 @@
 import { Photo } from "@schemas/photos"
+import { Video } from "@schemas/videos"
 import { getPlaiceholder } from "plaiceholder"
 
 export default async function getBase64(imageUrl: string) {
@@ -19,5 +20,14 @@ export async function getBlurredPhotos(photoUrls: Photo[]): Promise<Photo[]> {
   return photoUrls.map((photo, index) => {
     photo.blurredDataUrl = base64Photos[index]
     return photo
+  })
+}
+
+export async function getBlurredThumbnails(videoUrls: Video[]): Promise<Video[]> {
+  const base64Promises = videoUrls.map(url => getBase64(url.image))
+  const base64Thumbnails = await Promise.all(base64Promises)
+  return videoUrls.map((video, index) => {
+    video.blurredThumbnail = base64Thumbnails[index]
+    return video
   })
 }

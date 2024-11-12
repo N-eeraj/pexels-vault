@@ -2,12 +2,12 @@ import { ZodSchema } from "zod"
 import {
   PhotoResource,
   PhotoResourceSchema,
-  QueryParams,
-  QueryParamsSchema,
 } from "@schemas/photos"
 import {
   ListParams,
   ListParamsSchema,
+  QueryParams,
+  QueryParamsSchema,
 } from "@schemas/common"
 import { PEXELS_API_KEY } from "@constants/pexels"
 

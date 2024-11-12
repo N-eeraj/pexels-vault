@@ -22,7 +22,6 @@ export async function fetchPopularVideos(params?: ListParams | undefined): Promi
   })
   if (!response.ok) throw new Error("Failed to fetch videos")
   const data: VideoResource = await response.json()
-  console.log(data)
   const parsedData = VideoResourceSchema.parse(data)
   if (parsedData.total_results === 0) {
     return undefined

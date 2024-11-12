@@ -1,9 +1,4 @@
 import { z } from "zod"
-import {
-  ORIENTATION,
-  SIZE,
-} from "@constants/pexels"
-import { ListParamsSchema } from "@schemas/common"
 
 export const VideoSchema = z.object({ 
   id: z.number(),
@@ -11,6 +6,7 @@ export const VideoSchema = z.object({
   height: z.number(),
   url: z.string(),
   image: z.string(),
+  blurredThumbnail: z.string().optional(),
   duration: z.number(),
   user: z.object({
     id: z.number(),
@@ -44,12 +40,5 @@ export const VideoResourceSchema = z.object({
   next_page: z.string().optional(),
 })
 
-export const QueryParamsSchema = ListParamsSchema.extend({
-  query: z.string(),
-  orientation: z.enum(ORIENTATION).optional(),
-  size: z.enum(SIZE).optional(),
-})
-
 export type Video = z.infer<typeof VideoSchema>
 export type VideoResource = z.infer<typeof VideoResourceSchema>
-export type QueryParams = z.infer<typeof QueryParamsSchema>
