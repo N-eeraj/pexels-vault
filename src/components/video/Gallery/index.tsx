@@ -1,7 +1,13 @@
-import Image from "next/image"
+import Link from "next/link"
+
+import { Icon } from "@iconify/react"
+
 import Masonry from "@components/Masonry"
-import type { VideoResource } from "@schemas/videos"
 import Pagination from "@components/Pagination"
+import PhotoThumbnail from "@components/PreviewImage"
+
+import type { VideoResource } from "@schemas/videos"
+
 import { getBlurredThumbnails } from "@lib/getBlurredImage"
 
 export default async function Gallery({ data }: Readonly<{data: VideoResource | undefined}>) {
@@ -21,16 +27,21 @@ export default async function Gallery({ data }: Readonly<{data: VideoResource | 
     <>
       <Masonry
         items={data.videos}
-        renderEl={({ image, width, height, blurredThumbnail }) => (
-          <Image
-            src={image}
-            width={256}
-            height={256 * (height / width)}
-            alt="video thumbnail"
-            placeholder="blur"
-            blurDataURL={blurredThumbnail}
-            style={{ width: "100%" }}
-            className="hover:opacity-90 scale-125 hover:scale-100 duration-300 cursor-pointer" />
+        renderEl={({ id, image, width, height, blurredThumbnail, user }) => (
+          <Link href={`/video/${id}`}>
+            <PhotoThumbnail
+              src={image}
+              width={256}
+              height={256 * (height / width)}
+              alt="video thumbnail"
+              placeholder="blur"
+              blurDataURL={blurredThumbnail}
+              name={user.name}>
+              <Icon
+                icon="material-symbols:play-circle-rounded"
+                className="absolute top-2 left-2 p-1.5 bg-black/50 text-primary text-4xl rounded-full z-10" />
+            </PhotoThumbnail>
+          </Link>
         )}
         className="max-w-7xl mx-auto" />
 

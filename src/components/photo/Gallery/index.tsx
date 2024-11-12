@@ -1,8 +1,11 @@
-import Image from "next/image"
+import Link from "next/link"
 import Masonry from "@components/Masonry"
-import type { PhotoResource } from "@schemas/photos"
-import { getBlurredPhotos } from "@lib/getBlurredImage"
 import Pagination from "@components/Pagination"
+import PhotoThumbnail from "@components/PreviewImage"
+
+import { getBlurredPhotos } from "@lib/getBlurredImage"
+
+import type { PhotoResource } from "@schemas/photos"
 
 export default async function Gallery({ data }: Readonly<{data: PhotoResource | undefined}>) {
   if (!data || !data.photos?.length) {
@@ -21,16 +24,17 @@ export default async function Gallery({ data }: Readonly<{data: PhotoResource | 
     <>
       <Masonry
         items={data.photos}
-        renderEl={({ src, height, width, alt, blurredDataUrl }) => (
-          <Image
-            src={src.large}
-            width={256}
-            height={256 * (height / width)}
-            alt={alt}
-            placeholder="blur"
-            blurDataURL={blurredDataUrl}
-            style={{ width: "100%" }}
-            className="hover:opacity-90 scale-125 hover:scale-100 duration-300 cursor-pointer" />
+        renderEl={({ id, src, height, width, alt, blurredDataUrl, photographer }) => (
+          <Link href={`/photo/${id}`}>
+            <PhotoThumbnail
+              src={src.large}
+              width={256}
+              height={256 * (height / width)}
+              alt={alt}
+              placeholder="blur"
+              blurDataURL={blurredDataUrl}
+              name={photographer} />
+          </Link>
         )}
         className="max-w-7xl mx-auto" />
 
