@@ -1,7 +1,7 @@
 import Link from "next/link"
 import Masonry from "@components/Masonry"
 import Pagination from "@components/Pagination"
-import PhotoThumbnail from "@components/PreviewImage"
+import PreviewImage from "@components/PreviewImage"
 
 import { getBlurredPhotos } from "@lib/getBlurredImage"
 
@@ -26,7 +26,7 @@ export default async function Gallery({ data }: Readonly<{data: PhotoResource | 
         items={data.photos}
         renderEl={({ id, src, height, width, alt, blurredDataUrl, photographer }) => (
           <Link href={`/photo/${id}`}>
-            <PhotoThumbnail
+            <PreviewImage
               src={src.large}
               width={256}
               height={256 * (height / width)}

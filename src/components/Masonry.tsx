@@ -1,10 +1,12 @@
+import { ComponentType } from "react"
+
 export default function Masonry<T extends { id: number }>({
   items,
   renderEl: RenderEl,
   className
 }: Readonly<{
   items: T[]
-  renderEl: React.ComponentType<T>
+  renderEl: ComponentType<T>
   className?: string
 }>) {
   return (

@@ -1,9 +1,10 @@
-"use client"
-
-import { MouseEventHandler } from "react"
+import {
+  ReactNode,
+  MouseEventHandler,
+} from "react"
 import Image from "next/image"
 
-export default function PhotoThumbnail({ name, children, onMouseEnter, onMouseLeave, ...props }: Readonly<{
+export default function PreviewImage({ name, children, onMouseEnter, onMouseLeave, ...props }: Readonly<{
   src: string
   width: number
   height: number
@@ -11,7 +12,7 @@ export default function PhotoThumbnail({ name, children, onMouseEnter, onMouseLe
   placeholder: "blur" | "empty" | `data:image/${string}`
   blurDataURL: string | undefined
   name: string
-  children?: React.ReactNode
+  children?: ReactNode
   onMouseEnter?: MouseEventHandler
   onMouseLeave?: MouseEventHandler
 }>) {
