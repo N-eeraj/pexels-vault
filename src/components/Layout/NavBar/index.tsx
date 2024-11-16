@@ -1,7 +1,7 @@
 import { Suspense } from "react"
 import Link from "next/link"
 import Image from "next/image"
-import SearchSelect from "@components/Layout/NavBar/SearchSelect"
+import SearchBar from "@components/Layout/NavBar/SearchBar"
 
 export default function NavBar() {
   return (
@@ -20,7 +20,7 @@ export default function NavBar() {
       </Link>
 
       <Suspense>
-        <SearchSelect />
+        <SearchBar />
       </Suspense>
     </nav>
   )

@@ -21,7 +21,7 @@ export async function generateMetadata({ params, searchParams }: PageParams) {
   }
 }
 
-export default function page({ params, searchParams }: PageParams) {
+export default function Search({ params, searchParams }: PageParams) {
   const query = toTitleCase(decodeURI(params.query))
   const type = searchParams?.type ?? "photo"
   const page = Number(searchParams?.page) || 1

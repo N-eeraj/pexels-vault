@@ -22,7 +22,7 @@ export default function MediaTypeTab() {
 
   return (
     <TabGroup
-      defaultIndex={defaultIndex}
+      selectedIndex={defaultIndex}
       onChange={handleTypeChange}>
       <TabList className="flex justify-center gap-x-2 p-2">
         {MEDIA_TYPES.map(({ type }) => (

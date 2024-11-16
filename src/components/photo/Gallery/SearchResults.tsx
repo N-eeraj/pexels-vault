@@ -5,14 +5,14 @@ export default async function CuratedPhotos({ query, page }: Readonly<{
   query: string,
   page: number
 }>) {
-  const curatedPhotos = await fetchPhotosByQuery({
+  const searchedPhotos = await fetchPhotosByQuery({
     query,
     page,
   })
 
   return (
     <section>
-      <ImageGallery data={curatedPhotos} />
+      <ImageGallery data={searchedPhotos} />
     </section>
   )
 }

@@ -27,7 +27,7 @@ import { MEDIA_TYPES } from "@constants/pexels"
 
 type MediaType = typeof MEDIA_TYPES[number]["type"]
 
-export default function SearchSelect() {
+export default function SearchBar() {
   const searchParams = useSearchParams()
   const router = useRouter()
   const {
