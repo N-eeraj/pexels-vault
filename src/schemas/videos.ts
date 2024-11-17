@@ -6,7 +6,6 @@ export const VideoSchema = z.object({
   height: z.number(),
   url: z.string(),
   image: z.string(),
-  blurredThumbnail: z.string().optional(),
   duration: z.number(),
   user: z.object({
     id: z.number(),
@@ -16,7 +15,7 @@ export const VideoSchema = z.object({
   video_files: z.array(
     z.object({
       id: z.number(),
-      quality: z.string(),
+      quality: z.enum(["uhd", "hd", "sd"]).nullable(),
       file_type: z.string(),
       width: z.number(),
       height: z.number(),
@@ -29,6 +28,7 @@ export const VideoSchema = z.object({
       picture: z.string(),
     })
   ),
+  blurredThumbnail: z.string().optional(),
 })
 
 export const VideoResourceSchema = z.object({
