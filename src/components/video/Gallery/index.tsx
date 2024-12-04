@@ -6,7 +6,7 @@ import { getBlurredThumbnails } from "@lib/getBlurredImage"
 import type { VideoResource } from "@schemas/videos"
 
 
-export default async function Gallery({ data }: Readonly<{data: VideoResource | undefined}>) {
+export default async function Gallery({ data }: {data: VideoResource | undefined}) {
   if (!data || !data.videos?.length) {
     return (
       <strong>

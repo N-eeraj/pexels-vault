@@ -4,10 +4,10 @@ import ReactPaginate from "react-paginate"
 
 import useUpdateSearchParams from "@hooks/useUpdateSearchParams"
 
-export default function Pagination({ length, currentPage }: Readonly<{
+export default function Pagination({ length, currentPage }: {
   length: number
   currentPage: number
-}>) {
+}) {
   const { updateSearchParams } = useUpdateSearchParams()
   const activePageIndex = currentPage - 1
 

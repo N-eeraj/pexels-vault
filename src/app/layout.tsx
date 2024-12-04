@@ -16,9 +16,9 @@ export const revalidate = 3600
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: ReactNode
-}>) {
+}) {
 
   return (
     <html lang="en">

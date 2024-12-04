@@ -7,7 +7,7 @@ import { getBlurredPhotos } from "@lib/getBlurredImage"
 
 import type { PhotoResource } from "@schemas/photos"
 
-export default async function Gallery({ data }: Readonly<{data: PhotoResource | undefined}>) {
+export default async function Gallery({ data }: {data: PhotoResource | undefined}) {
   if (!data || !data.photos?.length) {
     return (
       <strong>

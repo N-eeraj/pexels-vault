@@ -4,11 +4,11 @@ export default function Masonry<T extends { id: number }>({
   items,
   renderEl: RenderEl,
   className
-}: Readonly<{
+}: {
   items: T[]
   renderEl: ComponentType<T>
   className?: string
-}>) {
+}) {
   return (
     <ul className={`columns-3xs p-4 ${className}`}>
       {items.map(item => (

@@ -4,7 +4,7 @@ import {
 } from "react"
 import Image from "next/image"
 
-export default function PreviewImage({ name, children, onMouseEnter, onMouseLeave, ...props }: Readonly<{
+export default function PreviewImage({ name, children, onMouseEnter, onMouseLeave, ...props }: {
   src: string
   width: number
   height: number
@@ -15,7 +15,7 @@ export default function PreviewImage({ name, children, onMouseEnter, onMouseLeav
   children?: ReactNode
   onMouseEnter?: MouseEventHandler
   onMouseLeave?: MouseEventHandler
-}>) {
+}) {
   return (
     <div
       className="group relative overflow-hidden cursor-pointer"
