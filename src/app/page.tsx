@@ -2,6 +2,7 @@ import { Suspense } from "react"
 import MediaTypeTab from "@components/MediaTypeTab"
 import CuratedPhotos from "@components/photo/Gallery/Curated"
 import PopularVideos from "@components/video/Gallery/Popular"
+import LoadingGallery from "@components/loading/Gallery"
 
 export default function Home({ searchParams }: {
   searchParams?: {
@@ -18,18 +19,14 @@ export default function Home({ searchParams }: {
         <MediaTypeTab />
       </Suspense>
 
-      { type === "video" ?
-          (<Suspense
-            key={page}
-            fallback="loading...">
-            <PopularVideos page={page} />
-          </Suspense>):
-          (<Suspense
-            key={page}
-            fallback="loading...">
-            <CuratedPhotos page={page} />
-          </Suspense>)
-      }
+      <Suspense
+        key={`${page}-${type}`}
+        fallback={<LoadingGallery />}>
+        {type === "video" ?
+          <PopularVideos page={page} /> :
+          <CuratedPhotos page={page} />
+        }
+      </Suspense>
     </>
   )
 }

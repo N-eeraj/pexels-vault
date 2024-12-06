@@ -1,5 +1,5 @@
 import Image from "next/image"
-import NotFoundLink from "@components/Link"
+import NotFoundLink from "@components/NotFoundLink"
 import { Icon } from "@iconify/react"
 
 export default function NotFound() {

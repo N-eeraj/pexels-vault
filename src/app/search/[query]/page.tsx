@@ -2,7 +2,8 @@ import { Suspense } from "react"
 import MediaTypeTab from "@components/MediaTypeTab"
 import SearchResultPhotos from "@components/photo/Gallery/SearchResults"
 import SearchResultVideos from "@components/video/Gallery/SearchResults"
-import toTitleCase from "~/src/utils/toTitleCase"
+import LoadingGallery from "@components/loading/Gallery"
+import toTitleCase from "@utils/toTitleCase"
 
 interface PageParams {
   params: {
@@ -33,22 +34,18 @@ export default function Search({ params, searchParams }: PageParams) {
         <MediaTypeTab />
       </Suspense>
 
-      { type === "video" ?
-          (<Suspense
-            key={`${query}-${page}`}
-            fallback="loading...">
-            <SearchResultVideos
-              query={query}
-              page={page} />
-          </Suspense>):
-          (<Suspense
-            key={`${query}-${page}`}
-            fallback="loading...">
-            <SearchResultPhotos
-              query={query}
-              page={page} />
-          </Suspense>)
-      }
+      <Suspense
+        key={`${page}-${type}`}
+        fallback={<LoadingGallery />}>
+        {type === "video" ?
+          <SearchResultVideos
+            query={query}
+            page={page} /> :
+          <SearchResultPhotos
+            query={query}
+            page={page} />
+        }
+      </Suspense>
     </main>
   )
 }
