@@ -1,5 +1,10 @@
-import { fetchMediaList } from "@lib/fetchMedia"
 import {
+  fetchMediaList,
+  fetchMediaItem,
+} from "@lib/fetchMedia"
+import {
+  Photo,
+  PhotoSchema,
   PhotoResource,
   PhotoResourceSchema,
 } from "@schemas/photos"
@@ -9,6 +14,7 @@ import {
   QueryParams,
   QueryParamsSchema,
 } from "@schemas/common"
+import { PEXELS_API_KEY } from "@constants/pexels"
 
 export async function fetchCuratedPhotos(params?: ListParams | undefined): Promise<PhotoResource | undefined> {
   return await fetchMediaList({
@@ -25,5 +31,13 @@ export async function fetchPhotosByQuery(params: QueryParams): Promise<PhotoReso
     ResourceSchema: PhotoResourceSchema,
     params,
     ParamsSchema: QueryParamsSchema,
+  })
+}
+
+export async function fetchPhotoById(id: string | number): Promise<Photo | undefined> {
+  return await fetchMediaItem({
+    url: "https://api.pexels.com/v1/photos",
+    id,
+    MediaSchema: PhotoSchema
   })
 }

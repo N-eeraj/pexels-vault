@@ -1,6 +1,12 @@
 import { ZodSchema } from "zod"
-import { PhotoResource } from "@schemas/photos"
-import { VideoResource } from "@schemas/videos"
+import {
+  Photo,
+  PhotoResource,
+} from "@schemas/photos"
+import {
+  Video,
+  VideoResource,
+} from "@schemas/videos"
 import {
   ListParams,
   QueryParams,
@@ -12,6 +18,12 @@ interface MediaListArgs<Resource, Params> {
   ResourceSchema: ZodSchema<Resource>
   params: Params
   ParamsSchema: ZodSchema<Params>
+}
+
+interface MediaItemArgs<Media> {
+  url: string
+  id: string | number
+  MediaSchema: ZodSchema<Media>
 }
 
 export async function fetchMediaList<
@@ -35,5 +47,19 @@ export async function fetchMediaList<
   if (parsedData.total_results === 0) {
     return undefined
   }
+  return parsedData
+}
+
+export async function fetchMediaItem<
+    Media extends Photo | Video,
+  >({ url, id, MediaSchema }: MediaItemArgs<Media>): Promise<Media | undefined> {
+  const response = await fetch(`${url}/${id}`, {
+    headers: {
+      Authorization: PEXELS_API_KEY,
+    }
+  })
+  if (!response.ok) throw new Error("Failed to fetch")
+    const data: Media = await response.json()
+  const parsedData = MediaSchema.parse(data)
   return parsedData
 }
