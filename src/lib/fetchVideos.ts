@@ -1,5 +1,10 @@
-import { fetchMediaList } from "@lib/fetchMedia"
 import {
+  fetchMediaList,
+  fetchMediaItem,
+} from "@lib/fetchMedia"
+import {
+  Video,
+  VideoSchema,
   VideoResource,
   VideoResourceSchema,
 } from "@schemas/videos"
@@ -25,5 +30,13 @@ export async function fetchVideosByQuery(params: QueryParams): Promise<VideoReso
     ResourceSchema: VideoResourceSchema,
     params,
     ParamsSchema: QueryParamsSchema,
+  })
+}
+
+export async function fetchVideoById(id: string | number): Promise<Video | undefined> {
+  return await fetchMediaItem({
+    url: "https://api.pexels.com/v1/videos/videos",
+    id,
+    MediaSchema: VideoSchema,
   })
 }

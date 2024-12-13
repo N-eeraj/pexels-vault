@@ -38,6 +38,6 @@ export async function fetchPhotoById(id: string | number): Promise<Photo | undef
   return await fetchMediaItem({
     url: "https://api.pexels.com/v1/photos",
     id,
-    MediaSchema: PhotoSchema
+    MediaSchema: PhotoSchema,
   })
 }
