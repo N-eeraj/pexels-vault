@@ -35,7 +35,6 @@ export default async function Photo({ params }: PageParams) {
   return (
     <section className="grid md:grid-cols-2 justify-items-center items-center gap-y-4 w-full p-2">
       <MediaHeader
-        name={photoData.alt}
         photographer={photoData.photographer}
         photographerUrl={photoData.photographer_url}
         sizeOptions={sizeOptions}

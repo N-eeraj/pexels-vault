@@ -2,6 +2,16 @@
 
 import { useState } from "react"
 import Link from "next/link"
+
+import {
+  Listbox,
+  ListboxButton,
+  ListboxOption,
+  ListboxOptions,
+} from '@headlessui/react'
+
+import { Icon } from "@iconify/react"
+
 import { downloadImage } from "@lib/downloadFile"
 
 export type SizeOptions = {
@@ -10,8 +20,7 @@ export type SizeOptions = {
   url: string
 }[]
 
-export default function MediaHeader({ name, photographer, photographerUrl, sizeOptions, userClassName, downloadClassName }: {
-  name: string
+export default function MediaHeader({ photographer, photographerUrl, sizeOptions, userClassName, downloadClassName }: {
   photographer: string
   photographerUrl: string
   sizeOptions: SizeOptions
@@ -21,7 +30,8 @@ export default function MediaHeader({ name, photographer, photographerUrl, sizeO
   const [downloadURL, setDownloadURL] = useState(sizeOptions[0]?.url)
 
   const handleDownload = () => {
-    downloadImage(downloadURL, name)
+    const url = new URL(downloadURL)
+    downloadImage(downloadURL, url.pathname.split("/").at(-1))
   }
 
   return (
@@ -35,13 +45,44 @@ export default function MediaHeader({ name, photographer, photographerUrl, sizeO
       {downloadURL ?
         <div className={`flex justify-center items-center h-12 bg-accent text-white divide-x divide-black/25 rounded-md overflow-hidden ${downloadClassName}`}>
           <button
-            className="inline-block h-full px-8 hover:bg-black/10"
+            className="flex-1 inline-block h-full px-8 hover:bg-black/10"
             onClick={handleDownload}>
             Download
           </button>
-          <button className="inline-block w-10 h-full hover:bg-black/10">
-            Hi
-          </button>
+
+          <Listbox
+            value={downloadURL}
+            onChange={setDownloadURL}>
+            <ListboxButton className="inline-grid place-content-center w-10 h-full hover:bg-black/10">
+              <Icon
+                icon="mdi:chevron-down"
+                fontSize={20} />
+            </ListboxButton>
+            <ListboxOptions
+              anchor="bottom"
+              transition
+              className="absolute right-0 w-fit min-w-72 rounded-md border bg-primary p-1 backdrop-blur capitalize [--anchor-gap:var(--spacing-1)] focus:outline-none transition duration-100 ease-in data-[leave]:data-[closed]:opacity-0 -translate-x-2 -translate-y-2 md:translate-y-2 z-10 divide-y divide-secondary/5">
+              <span className="inline-block text-secondary/75 p-2">
+                Choose a size:
+              </span>
+              {sizeOptions.map(({ text, size, url }) => (
+                <ListboxOption
+                  key={url}
+                  value={url}
+                  className="group flex justify-between items-center gap-2 h-12 px-3 select-none data-[focus]:bg-secondary/10 transition cursor-pointer">
+                  <div className={`flex items-center gap-x-1`}>
+                    <span className="text-secondary-variant">
+                      {text}
+                    </span>
+                    <span className="text-secondary/60">
+                      {size}
+                    </span>
+                  </div>
+                  {downloadURL === url && <Icon icon="mdi-check-bold" />}
+                </ListboxOption>
+              ))}
+            </ListboxOptions>
+          </Listbox>
         </div> :
         <div />
       }

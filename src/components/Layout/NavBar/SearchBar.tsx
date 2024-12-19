@@ -71,8 +71,7 @@ export default function SearchBar() {
       <Listbox
         value={selectedType}
         onChange={setSelectedType}>
-        <ListboxButton
-          className="relative flex items-center gap-x-1 w-fit py-1.5 px-3 rounded-lg capitalize focus:outline-none data-[focus]:outline-2 data-[focus]:-outline-offset-2 data-[focus]:outline-white/25">
+        <ListboxButton className="relative flex items-center gap-x-1 w-fit py-1.5 px-3 rounded-lg capitalize focus:outline-none data-[focus]:outline-2 data-[focus]:-outline-offset-2 data-[focus]:outline-white/25">
           <Icon icon={currentIcon} />
           <span className="font-medium">
             {selectedType}

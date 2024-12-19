@@ -28,7 +28,6 @@ export default async function Video({ params }: PageParams) {
   return (
     <section className="grid md:grid-cols-2 justify-items-center items-center gap-y-4 w-full p-2">
       <MediaHeader
-        name={String(videoData.id)}
         photographer={videoData.user.name}
         photographerUrl={videoData.user.url}
         sizeOptions={sizeOptions}
