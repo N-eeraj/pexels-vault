@@ -14,7 +14,6 @@ import {
   QueryParams,
   QueryParamsSchema,
 } from "@schemas/common"
-import { PEXELS_API_KEY } from "@constants/pexels"
 
 export async function fetchCuratedPhotos(params?: ListParams | undefined): Promise<PhotoResource | undefined> {
   return await fetchMediaList({

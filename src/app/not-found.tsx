@@ -7,7 +7,7 @@ export default function NotFound() {
     <section className="lg:flex lg:justify-center lg:items-center lg:gap-x-12 px-2 py-12">
       <section>
         <h2 className="text-4xl">
-          Oops, we couldn't find this page.
+          Oops, we couldn&apos;t find this page.
         </h2>
         <h3 className="mt-2 text-2xl">
           Here are some helpful links instead:

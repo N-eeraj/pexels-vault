@@ -15,7 +15,7 @@ export default async function Photo({ params }: PageParams) {
   if (!photoData) return
 
   const sizeOptions: SizeOptions = Object.entries(photoData.src).reduce((options, [text, url]) => {
-    let { w, h } = Object.fromEntries(new URLSearchParams(url).entries())
+    const { w, h } = Object.fromEntries(new URLSearchParams(url).entries())
     if (w && h) {
       options.push({
         text,

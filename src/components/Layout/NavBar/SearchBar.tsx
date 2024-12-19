@@ -62,7 +62,7 @@ export default function SearchBar() {
 
   useEffect(() => {
     setSelectedType(mediaType)
-  }, [searchParams])
+  }, [searchParams, mediaType])
 
   return (
     <form

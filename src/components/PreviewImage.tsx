@@ -4,7 +4,7 @@ import {
 } from "react"
 import Image from "next/image"
 
-export default function PreviewImage({ name, children, onMouseEnter, onMouseLeave, ...props }: {
+export default function PreviewImage({ name, alt, children, onMouseEnter, onMouseLeave, ...props }: {
   src: string
   width: number
   height: number
@@ -22,6 +22,7 @@ export default function PreviewImage({ name, children, onMouseEnter, onMouseLeav
       onMouseEnter={onMouseEnter && onMouseEnter}
       onMouseLeave={onMouseLeave && onMouseLeave}>
       <Image
+        alt={alt}
         {...props}
         style={{ width: "100%" }}
         className="scale-105 group-hover:scale-100 duration-300" />
