@@ -56,11 +56,11 @@ function Preview({ url, duration, className }: {
   }
 
   return (
-    <div className={`group relative ${className}`}>
+    <div className={`group relative w-full md:w-fit md:h-[600px] ${className}`}>
       <video
         ref={videoElement}
         src={url}
-        className="w-full max-w-5xl"
+        className="w-full max-w-5xl h-full"
         onClick={toggleVideoPlayer}
         onEnded={handleVideoEnd} />
 

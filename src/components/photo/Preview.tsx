@@ -10,6 +10,6 @@ export default function Preview({ className, ...photoData }: { className?: strin
       src={photoData.src.original}
       imgAttributes={{ alt: photoData.alt }}
       hideHint
-      className={`w-full !max-w-5xl ${className}`} />
+      className={`zoom-image-container w-full md:w-fit !max-w-5xl md:h-[600px] ${className}`} />
   )
 }

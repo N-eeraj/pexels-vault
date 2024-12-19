@@ -12,3 +12,11 @@
 .page-step-btn {
   @apply w-10 aspect-square page-btn font-medium;
 }
+
+/* size adjust for InnerImageZoom component */
+.zoom-image-container > div {
+  @apply md:w-fit md:h-full;
+}
+.zoom-image-container .iiz__img {
+  @apply md:w-auto md:h-full;
+}
