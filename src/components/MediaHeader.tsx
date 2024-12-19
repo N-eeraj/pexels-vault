@@ -28,10 +28,13 @@ export default function MediaHeader({ photographer, photographerUrl, sizeOptions
   downloadClassName?: string
 }) {
   const [downloadURL, setDownloadURL] = useState(sizeOptions[0]?.url)
+  const [isDownloading, setIsDownloading] = useState(false)
 
-  const handleDownload = () => {
+  const handleDownload = async () => {
+    setIsDownloading(true)
     const url = new URL(downloadURL)
-    downloadImage(downloadURL, url.pathname.split("/").at(-1))
+    await downloadImage(downloadURL, url.pathname.split("/").at(-1))
+    setIsDownloading(false)
   }
 
   return (
@@ -43,17 +46,30 @@ export default function MediaHeader({ photographer, photographerUrl, sizeOptions
       </Link>
 
       {downloadURL ?
-        <div className={`flex justify-center items-center h-12 bg-accent text-white divide-x divide-black/25 rounded-md overflow-hidden ${downloadClassName}`}>
+        <div className={`flex justify-center items-center w-fit h-12 bg-accent text-white divide-x divide-black/25 rounded-md overflow-hidden ${isDownloading && "grayscale"} ${downloadClassName}`}>
           <button
-            className="flex-1 inline-block h-full px-8 hover:bg-black/10"
+            disabled={isDownloading}
+            className="flex-1 inline-flex justify-center items-center gap-x-1 h-full px-8 hover:bg-black/10 disabled:cursor-not-allowed"
             onClick={handleDownload}>
-            Download
+            {isDownloading ?
+              <>
+                <span>
+                  Downloading
+                </span>
+                <Icon
+                  icon="eos-icons:three-dots-loading"
+                  fontSize={32} />
+              </> :
+              "Download"
+            }
           </button>
 
           <Listbox
             value={downloadURL}
             onChange={setDownloadURL}>
-            <ListboxButton className="inline-grid place-content-center w-10 h-full hover:bg-black/10">
+            <ListboxButton
+              disabled={isDownloading}
+              className="inline-grid place-content-center w-10 h-full hover:bg-black/10 disabled:cursor-not-allowed">
               <Icon
                 icon="mdi:chevron-down"
                 fontSize={20} />
