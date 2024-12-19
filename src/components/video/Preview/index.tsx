@@ -8,7 +8,11 @@ import {
 
 import Player from "./Player"
 
-function Preview({ url, duration }: { url: string, duration: number }) {
+function Preview({ url, duration, className }: {
+  url: string
+  duration: number
+  className?: string
+}) {
   const videoElement = useRef<HTMLVideoElement | null>(null)
   const [isPlaying, setIsPlaying] = useState(false)
   const [time, setTime] = useState(0)
@@ -52,7 +56,7 @@ function Preview({ url, duration }: { url: string, duration: number }) {
   }
 
   return (
-    <div className="group relative">
+    <div className={`group relative ${className}`}>
       <video
         ref={videoElement}
         src={url}

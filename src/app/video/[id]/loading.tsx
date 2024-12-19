@@ -1,7 +1,7 @@
 function Loading() {
   return (
     <div>
-      Loading Photo
+      Loading Video
     </div>
   )
 }
