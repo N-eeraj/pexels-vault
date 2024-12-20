@@ -38,12 +38,12 @@ export default async function Photo({ params }: PageParams) {
         photographer={photoData.photographer}
         photographerUrl={photoData.photographer_url}
         sizeOptions={sizeOptions}
-        userClassName="w-full md:w-fit md:justify-self-start md:-order-1"
-        downloadClassName="w-full md:w-fit md:place-self-end order-1 md:-order-1" />
+        userClassName="w-full md:w-fit md:justify-self-start"
+        downloadClassName="w-full md:w-fit md:place-self-end order-2 md:order-1" />
 
       <PhotoPreview
         {...photoData}
-        className="self-start md:col-span-2" />
+        className="md:col-span-2 order-1" />
     </section>
   )
 }

@@ -32,12 +32,12 @@ export default async function Video({ params }: PageParams) {
         photographerUrl={videoData.user.url}
         sizeOptions={sizeOptions}
         userClassName="w-full md:-order-1"
-        downloadClassName="w-full md:w-fit md:place-self-end order-1 md:-order-1" />
+        downloadClassName="w-full md:w-fit md:place-self-end order-2 md:order-1" />
 
       <VideoPreview
         url={videoData.video_files[0].link}
         duration={videoData.duration}
-        className="self-start md:col-span-2" />
+        className="md:col-span-2 order-1" />
     </section>
   )
 }

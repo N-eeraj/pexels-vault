@@ -1,8 +1,8 @@
+import MediaPageLoading from "@components/MediaPageLoading"
+
 function Loading() {
   return (
-    <div>
-      Loading Photo
-    </div>
+    <MediaPageLoading />
   )
 }
 
