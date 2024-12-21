@@ -19,6 +19,8 @@ This is a product designer's portfolio.
 - ### Basic Installation
   - Install Node.js v20.9.0 or higher.
   - Install npm 10.1.0 or higher.
+  - Install required dependencies using `npm i`
+    Some packages may be not be compatible with `react 19.0.0`, if so run `npm i --force`
 - ### Starting Development Server
   - To start the development server, run npm run dev.
   - By default, the project will start at http://localhost:3000; if port 3000 is in use, it will try the next one (3001).
