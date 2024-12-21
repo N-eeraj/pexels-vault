@@ -4,14 +4,16 @@ import CuratedPhotos from "@components/photo/Gallery/Curated"
 import PopularVideos from "@components/video/Gallery/Popular"
 import LoadingGallery from "@components/loading/Gallery"
 
-export default function Home({ searchParams }: {
-  searchParams?: {
-    type?: string
-    page?: string
+export default async function Home({ searchParams }: {
+    searchParams?: Promise<{
+      type?: string
+      page?: string
+    }>
   }
-}) {
-  const type = searchParams?.type ?? "photo"
-  const page = Number(searchParams?.page) || 1
+) {
+  const urlParams = await searchParams
+  const type = urlParams?.type ?? "photo"
+  const page = Number(urlParams?.page) || 1
 
   return (
     <>

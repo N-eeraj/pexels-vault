@@ -4,13 +4,14 @@ import VideoPreview from "@components/video/Preview"
 import { fetchVideoById } from "@lib/fetchVideos"
 
 interface PageParams {
-  params: {
+  params: Promise<{
     id: string
-  }
+  }>
 }
 
 export default async function Video({ params }: PageParams) {
-  const videoData = await fetchVideoById(params.id)
+  const pageParams = await params
+  const videoData = await fetchVideoById(pageParams.id)
 
   if (!videoData) return
 

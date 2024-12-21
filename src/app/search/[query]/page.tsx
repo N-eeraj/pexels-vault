@@ -6,27 +6,45 @@ import LoadingGallery from "@components/loading/Gallery"
 import toTitleCase from "@utils/toTitleCase"
 
 interface PageParams {
-  params: {
+  params: Promise<{
     query: string
-  }
-  searchParams?: {
+  }>
+  searchParams?: Promise<{
     type?: string
     page?: string
-  }
+  }>
 }
 
-export async function generateMetadata({ params, searchParams }: PageParams) {
-  const query = toTitleCase(decodeURI(params.query))
-  const type = toTitleCase(searchParams?.type ?? "photo")
+async function getPageParams({ searchParams, params }: PageParams) {
+  const urlParams = await searchParams
+  const pageParams = await params
+  const query = toTitleCase(decodeURI(pageParams.query))
+  const type = urlParams?.type ?? "photo"
+  const page = Number(urlParams?.page) || 1
+
   return {
-    title: `${type} results for ${query}`,
+    query,
+    type,
+    page,
   }
 }
 
-export default function Search({ params, searchParams }: PageParams) {
-  const query = toTitleCase(decodeURI(params.query))
-  const type = searchParams?.type ?? "photo"
-  const page = Number(searchParams?.page) || 1
+export async function generateMetadata(pageParams: PageParams) {
+  const {
+    query,
+    type,
+  } = await getPageParams(pageParams)
+  return {
+    title: `${toTitleCase(type)} results for ${query}`,
+  }
+}
+
+export default async function Search(pageParams: PageParams) {
+  const {
+    query,
+    type,
+    page,
+  } = await getPageParams(pageParams)
 
   return (
     <main>

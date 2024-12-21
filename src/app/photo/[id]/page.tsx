@@ -4,13 +4,14 @@ import PhotoPreview from "@components/photo/Preview"
 import { fetchPhotoById } from "@lib/fetchPhotos"
 
 interface PageParams {
-  params: {
+  params: Promise<{
     id: string
-  }
+  }>
 }
 
 export default async function Photo({ params }: PageParams) {
-  const photoData = await fetchPhotoById(params.id)
+  const pageParams = await params
+  const photoData = await fetchPhotoById(pageParams.id)
 
   if (!photoData) return
 
