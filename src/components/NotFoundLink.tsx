@@ -1,7 +1,7 @@
 import { ReactNode } from "react"
 import Link from "next/link"
 
-function NotFoundLink({ children, href }: {
+export default function NotFoundLink({ children, href }: {
   children: ReactNode
   href: string
 }) {
@@ -14,5 +14,3 @@ function NotFoundLink({ children, href }: {
     </Link>
   )
 }
-
-export default NotFoundLink

@@ -1,9 +1,7 @@
 import MediaPageLoading from "@components/MediaPageLoading"
 
-function Loading() {
+export default function Loading() {
   return (
     <MediaPageLoading />
   )
 }
-
-export default Loading
