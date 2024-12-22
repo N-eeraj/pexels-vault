@@ -1,4 +1,4 @@
-function LoadingGallery() {
+export default function LoadingGallery() {
   return (
     <section className="max-w-7xl mx-auto">
       <ul className="columns-3xs p-4">
@@ -11,5 +11,3 @@ function LoadingGallery() {
     </section>
   )
 }
-
-export default LoadingGallery

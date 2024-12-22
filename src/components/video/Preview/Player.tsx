@@ -9,7 +9,7 @@ import { Icon } from "@iconify/react"
 
 import getFormattedTime from "@utils/formatVideoTime"
 
-function Player({ videoElement, time, duration, isPlaying, handleSeek, toggleVideoPlayer }: {
+export default function Player({ videoElement, time, duration, isPlaying, handleSeek, toggleVideoPlayer }: {
   videoElement: HTMLVideoElement
   time: number
   duration: number
@@ -65,5 +65,3 @@ function Player({ videoElement, time, duration, isPlaying, handleSeek, toggleVid
     </div>
   )
 }
-
-export default Player

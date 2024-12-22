@@ -8,7 +8,7 @@ import {
 
 import Player from "./Player"
 
-function Preview({ url, duration, className }: {
+export default function Preview({ url, duration, className }: {
   url: string
   duration: number
   className?: string
@@ -76,5 +76,3 @@ function Preview({ url, duration, className }: {
     </div>
   )
 }
-
-export default Preview
