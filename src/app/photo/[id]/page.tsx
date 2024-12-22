@@ -1,12 +1,7 @@
 import PhotoView from "@components/photo/View"
+import type { PageIdParams } from "@/types"
 
-interface PageParams {
-  params: Promise<{
-    id: string
-  }>
-}
-
-export default async function Photo({ params }: PageParams) {
+export default async function Photo({ params }: PageIdParams) {
   const { id } = await params
 
   return (

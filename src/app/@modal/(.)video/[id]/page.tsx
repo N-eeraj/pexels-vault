@@ -1,18 +1,17 @@
+import { Suspense } from "react"
 import VideoView from "@components/video/View"
 import ModalLayout from "@components/ModalLayout"
+import MediaPageLoading from "@components/MediaPageLoading"
+import type { PageIdParams } from "@/types"
 
-interface PageParams {
-  params: Promise<{
-    id: string
-  }>
-}
-
-export default async function VideoModal({ params }: PageParams) {
+export default async function VideoModal({ params }: PageIdParams) {
   const { id } = await params
 
   return (
     <ModalLayout>
-      <VideoView id={id} />
+      <Suspense fallback={<MediaPageLoading />}>
+        <VideoView id={id} />
+      </Suspense>
     </ModalLayout>
   )
 }
