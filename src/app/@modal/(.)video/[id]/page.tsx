@@ -1,4 +1,4 @@
-import PhotoView from "@components/photo/View"
+import VideoView from "@components/video/View"
 import ModalLayout from "@components/ModalLayout"
 
 interface PageParams {
@@ -7,12 +7,12 @@ interface PageParams {
   }>
 }
 
-export default async function PhotoModal({ params }: PageParams) {
+export default async function VideoModal({ params }: PageParams) {
   const { id } = await params
 
   return (
     <ModalLayout>
-      <PhotoView id={id} />
+      <VideoView id={id} />
     </ModalLayout>
   )
 }
