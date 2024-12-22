@@ -1,12 +1,7 @@
-import VideoView from "~/src/components/video/View"
+import VideoView from "@components/video/View"
+import type { PageIdParams } from "@/types"
 
-interface PageParams {
-  params: Promise<{
-    id: string
-  }>
-}
-
-export default async function Video({ params }: PageParams) {
+export default async function Video({ params }: PageIdParams) {
   const { id } = await params
 
   return <VideoView id={id} />

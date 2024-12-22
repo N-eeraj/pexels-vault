@@ -19,7 +19,7 @@ export default function RootLayout({
   modal,
 }: {
   children: ReactNode
-  modal?: ReactNode
+  modal: ReactNode
 }) {
 
   return (
@@ -36,11 +36,10 @@ export default function RootLayout({
 
         <main className="flex-1 pb-4">
           {children}
+          {modal}
         </main>
 
         <Footer />
-
-        {modal}
       </body>
     </html>
   )

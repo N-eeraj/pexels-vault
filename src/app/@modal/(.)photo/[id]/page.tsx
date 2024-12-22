@@ -1,18 +1,17 @@
+import { Suspense } from "react"
 import PhotoView from "@components/photo/View"
 import ModalLayout from "@components/ModalLayout"
+import MediaPageLoading from "@components/MediaPageLoading"
+import type { PageIdParams } from "@/types"
 
-interface PageParams {
-  params: Promise<{
-    id: string
-  }>
-}
-
-export default async function PhotoModal({ params }: PageParams) {
+export default async function PhotoModal({ params }: PageIdParams) {
   const { id } = await params
 
   return (
     <ModalLayout>
-      <PhotoView id={id} />
+      <Suspense fallback={<MediaPageLoading />}>
+        <PhotoView id={id} />
+      </Suspense>
     </ModalLayout>
   )
 }
