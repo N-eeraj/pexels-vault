@@ -1,7 +1,7 @@
 # Pexels Vault
 
 ## About
-This is a product designer's portfolio.
+Pexels API powered photo/video gallery.
 
 ## 👨‍💻 Tech Used
 - [Next](https://nextjs.org/)
