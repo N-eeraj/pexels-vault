@@ -1,6 +1,10 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {
-  images: {
+
+const nextConfig = {}
+
+const optimizeImages = process.env.OPTIMIZE_IMAGE.toUpperCase() === "TRUE"
+if (optimizeImages) {
+  nextConfig.images = {
     remotePatterns: [
       {
         protocol: "https",
@@ -13,7 +17,7 @@ const nextConfig = {
         pathname: "/videos/**",
       },
     ],
-  },
+  }
 }
 
 export default nextConfig
