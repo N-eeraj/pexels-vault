@@ -2,7 +2,7 @@
 
 const nextConfig = {}
 
-const optimizeImages = process.env.OPTIMIZE_IMAGE.toUpperCase() === "TRUE"
+const optimizeImages = process.env.OPTIMIZE_IMAGE?.toUpperCase() === "TRUE"
 if (optimizeImages) {
   nextConfig.images = {
     remotePatterns: [
@@ -17,6 +17,10 @@ if (optimizeImages) {
         pathname: "/videos/**",
       },
     ],
+  }
+} else {
+  nextConfig.images = {
+    unoptimized: true,
   }
 }
 
